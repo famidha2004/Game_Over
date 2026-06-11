@@ -14,20 +14,20 @@ pipeline {
         git branch: 'main', url: 'https://github.com/harikrishnan-knr/Game_Over.git'
         }
     }
- 
-    stage('Stop Old Container') {
-        steps {
-        sh 'docker stop ${CONTAINER_NAME}'
-        sh 'docker rmi -f ${CONTAINER_NAME}'
-            }
-        }
-        
+
     stage('Build') {
         steps {
         sh '''docker -v
         docker build -t ${CONTAINER_NAME} .'''
         }
     }
+        
+    stage('Stop Old Container') {
+        steps {
+        sh 'docker stop ${CONTAINER_NAME} || true'
+        sh 'docker rmi -f ${CONTAINER_NAME} || true'
+            }
+        }
         
     stage('Run') {
         steps {
