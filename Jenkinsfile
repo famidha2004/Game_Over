@@ -5,7 +5,8 @@ pipeline {
     }
 
     environment {
-        CONTAINER_NAME = 'gameover:latest'
+        IMAGE_NAME = 'gameover-web'
+        CONTAINER_NAME = 'gameover'
         }
     
     stages {  
@@ -18,7 +19,7 @@ pipeline {
     stage('Build') {
         steps {
         sh '''docker -v
-        docker build -t ${CONTAINER_NAME} .'''
+        docker build -t ${IMAGE_NAME} .'''
         }
     }
         
@@ -31,7 +32,7 @@ pipeline {
         
     stage('Run') { 
         steps {
-        sh '''docker run -d -p 80:80 ${CONTAINER_NAME}
+        sh '''docker run -d ${IMAGE_NAME} -p 80:80 --name ${CONTAINER_NAME}:latest
         docker ps'''
         }
     }
