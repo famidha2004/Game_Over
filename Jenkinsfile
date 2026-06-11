@@ -29,7 +29,7 @@ pipeline {
             }
         }
         
-    stage('Run') {
+    stage('Run') { 
         steps {
         sh '''docker run -d -p 80:80 ${CONTAINER_NAME}
         docker ps'''
