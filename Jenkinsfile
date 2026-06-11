@@ -7,29 +7,34 @@ pipeline {
     environment {
         CONTAINER_NAME = 'gameover'
         }
+    
     stages {  
     stage('Git check') { 
         steps {
         git branch: 'main', url: 'https://github.com/harikrishnan-knr/Game_Over.git'
         }
     }
-    
-    stage('Stop Old Container') {
-        steps {
-        sh 'docker stop ${CONTAINER_NAME} || true'
-        sh 'docker rm ${CONTAINER_NAME} || true'
-        }
-    }
 
     stage('Build') {
         steps {
         sh '''docker -v
-        docker build -t ${CONTAINER_NAME} .
-        docker run -d -p 80:80 ${CONTAINER_NAME}
-        docker ps'''
+        docker build -t ${CONTAINER_NAME} .'''
         }
     }
+        
+    stage('Stop Old Container') {
+        steps {
+        sh 'docker stop ${CONTAINER_NAME} || true'
+        sh 'docker rm ${CONTAINER_NAME} || true'
+            }
+        }
+        
+    stage('Run Container') {
+        sh '''docker run -d -p 80:80 ${CONTAINER_NAME}
+        docker ps'''
     }
+    }
+    
 post {
         success {
             mail to: 'harikrishnanknr07@gmail.com',
