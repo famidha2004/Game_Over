@@ -25,7 +25,7 @@ pipeline {
     stage('Stop Old Container') {
         steps {
         sh 'docker stop ${CONTAINER_NAME} || true'
-        sh 'docker rmi -f ${CONTAINER_NAME} || true'
+        sh 'docker rm -f ${CONTAINER_NAME} || true'
             }
         }
         
