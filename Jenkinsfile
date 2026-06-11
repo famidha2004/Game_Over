@@ -9,7 +9,9 @@ pipeline {
         }
     stages {  
     stage('Git check') { 
+        steps {
         git branch: 'main', url: 'https://github.com/harikrishnan-knr/Game_Over.git'
+        }
     }
     
     stage('Stop Old Container') {
@@ -20,10 +22,12 @@ pipeline {
     }
 
     stage('Build') {
+        steps {
         sh '''docker -v
         docker build -t ${CONTAINER_NAME} .
         docker run -d -p 80:80 ${CONTAINER_NAME}
         docker ps'''
+        }
     }
     }
 post {
