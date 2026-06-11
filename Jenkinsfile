@@ -30,8 +30,10 @@ pipeline {
         }
         
     stage('Run Container') {
+        steps {
         sh '''docker run -d -p 80:80 ${CONTAINER_NAME}
         docker ps'''
+        }
     }
     }
     
