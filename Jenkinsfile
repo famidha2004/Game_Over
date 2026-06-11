@@ -7,7 +7,7 @@ pipeline {
     environment {
         CONTAINER_NAME = 'gameover'
         }
-        
+    stages {  
     stage('Git check') { 
         git branch: 'main', url: 'https://github.com/harikrishnan-knr/Game_Over.git'
     }
@@ -25,7 +25,7 @@ pipeline {
         docker run -d -p 80:80 ${CONTAINER_NAME}
         docker ps'''
     }
-
+    }
 post {
         success {
             mail to: 'harikrishnanknr07@gmail.com',
