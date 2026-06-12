@@ -33,7 +33,7 @@ pipeline {
    stage('Run') {
     steps {
         sh '''
-        docker run -d --name ${CONTAINER_NAME} -p 80:90 ${IMAGE_NAME}:latest
+        docker run -d --name ${CONTAINER_NAME} -p 80:80 ${IMAGE_NAME}:latest
         docker ps
         '''
     }
