@@ -1,6 +1,6 @@
 FROM httpd:2-alpine
 
-COPY /template/. /var/www/html/.
+COPY template/ /usr/local/apache2/htdocs/
 
 EXPOSE 80
 
