@@ -30,12 +30,14 @@ pipeline {
             }
         }
         
-    stage('Run') { 
-        steps {
-        sh '''docker run -d ${IMAGE_NAME} -p 80:90 --name ${CONTAINER_NAME}:latest
-        docker ps'''
-        }
+   stage('Run') {
+    steps {
+        sh '''
+        docker run -d --name ${CONTAINER_NAME} -p 90:80 ${IMAGE_NAME}:latest
+        docker ps
+        '''
     }
+}
     }
     
 post {
