@@ -32,7 +32,7 @@ pipeline {
         
     stage('Run') { 
         steps {
-        sh '''docker run -d ${IMAGE_NAME} -p 80:80 --name ${CONTAINER_NAME}:latest
+        sh '''docker run -d ${IMAGE_NAME} -p 90:90 --name ${CONTAINER_NAME}:latest
         docker ps'''
         }
     }
