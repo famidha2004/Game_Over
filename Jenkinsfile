@@ -12,7 +12,7 @@ pipeline {
     stages {  
     stage('Git check') { 
         steps {
-        git branch: 'main', url: 'https://github.com/harikrishnan-knr/Game_Over.git'
+        git branch: 'main', url: 'https://github.com/famidha2004/Game_Over.git'
         }
     }
 
@@ -40,13 +40,13 @@ pipeline {
     
 post {
         success {
-            mail to: 'harikrishnanknr07@gmail.com',
+            mail to: 'famidhashamshath@gmail.com',
                  subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                  body: "Build succeeded: ${env.BUILD_URL}"
         }
 
         failure {
-            mail to: 'harikrishnanknr07@gmail.com',
+            mail to: 'famidhashamshath@gmail.com',
                  subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                  body: "Build failed: ${env.BUILD_URL}"
         }
