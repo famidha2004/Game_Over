@@ -4,4 +4,4 @@ COPY template/ /usr/local/apache2/htdocs/
 
 EXPOSE 90
 
-CMD ["httpd", "-g", "daemon off;"]
+CMD ["httpd", "-D", "FOREGROUND"]
